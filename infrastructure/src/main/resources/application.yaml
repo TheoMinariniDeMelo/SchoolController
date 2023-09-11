@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: SchoolController
+  data:
+    mongodb:
+      uri: mongodb://yourusername:yourpassword@localhost:27017/yourDB
+debug: true
