@@ -25,6 +25,9 @@ public class People {
         this.address = address;
         this.role = role;
     }
+    public static People newPeople(String name, Transport transport, String telephone, Address address, Role role){
+        return new People(name,transport,telephone,address,role);
+    }
 
     public UUID getId() {
         return id;
