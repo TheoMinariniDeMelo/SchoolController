@@ -18,9 +18,11 @@ public class DefaultCreatePeoples extends CreatePeoplesUseCase {
         var role = createPeoplesRole.role();
         var transport = createPeoplesRole.transport();
         var telephone = createPeoplesRole.telephone();
-        Field field = NotNull.class.getField("value").get();
         var notification = new NotificationHandler();
         var aPeople = People.newPeople(name, transport, telephone, address, role);
+
+
+
         return null;
     }
 }

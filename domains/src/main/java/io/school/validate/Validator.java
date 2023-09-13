@@ -2,7 +2,8 @@ package io.school.validate;
 
 import io.school.peoples.People;
 
-public interface Validator {
 
-    void validate(People people);
+public interface Validator<EN> extends ValidationHandler {
+
+    void validate(EN people);
 }
