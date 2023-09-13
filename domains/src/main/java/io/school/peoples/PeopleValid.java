@@ -1,36 +1,34 @@
 package io.school.peoples;
 
 import io.school.address.Address;
-import io.school.filesReader.PropertiesHandler;
+import io.school.validate.NameParser;
 import io.school.validate.Validator;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.regex.Pattern;
+import java.util.Optional;
 
 public class PeopleValid implements Validator<People> {
 
 
     @Override
-    public void validate(People people) {
-
+    public void validate(People people) throws IOException {
+        this.addressValidator(people.address);
+        this.nameValidator(people.name);
     }
 
-    public static void toValidate(People people) {
+    public static void toValidate(People people) throws IOException {
         new PeopleValid().validate(people);
     }
 
     public void nameValidator(String name) throws IOException {
-        if (!name.isBlank() && Pattern.matches(PropertiesHandler.matcher(), name)) ;
-        else {
-            getNotificationHandler().addNotification(new Exception("Name are invalid!"));
-        }
+        if(NameParser.parseName(name).isEmpty()) getNotificationHandler().addNotification(new Exception("Name is invalid!"));
     }
 
     public void addressValidator(Address address) throws IOException {
-        if (!Objects.isNull(address) && Pattern.matches(PropertiesHandler.matcher(), null)) ;
+        if (!Objects.isNull(address)) ;
         else {
-            getNotificationHandler().addNotification(new Exception("Address are invalid!"));
+            getNotificationHandler().addNotification(new Exception("Address is invalid!"));
         }
     }
 }
