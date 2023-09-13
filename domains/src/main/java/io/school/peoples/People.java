@@ -1,12 +1,15 @@
 package io.school.peoples;
 
 import io.school.address.Address;
+import io.school.notifications.Notification;
+import io.school.notifications.NotificationHandler;
 import io.school.role.Role;
 import io.school.transport.Transport;
 
+import java.io.IOException;
 import java.util.UUID;
 
-public class People {
+public class People extends PeopleValid{
     protected UUID id;
     protected String name;
     protected Transport transport;
@@ -17,7 +20,9 @@ public class People {
 
     public People() {
     }
-
+    public void validator(NotificationHandler notification) {
+        this.validate(this,notification);
+    }
     public People(String name, Transport transport, String telephone, Address address, Role role) {
         this.name = name;
         this.transport = transport;

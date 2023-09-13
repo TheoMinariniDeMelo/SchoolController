@@ -1,8 +1,10 @@
 package io.school.application.peoples.create;
 
 import io.school.NotNull;
+import io.school.notifications.Notification;
 import io.school.notifications.NotificationHandler;
 import io.school.peoples.People;
+import io.school.peoples.PeopleValid;
 import io.school.school.SchoolGateway;
 import io.vavr.control.Either;
 
@@ -20,9 +22,7 @@ public class DefaultCreatePeoples extends CreatePeoplesUseCase {
         var telephone = createPeoplesRole.telephone();
         var notification = new NotificationHandler();
         var aPeople = People.newPeople(name, transport, telephone, address, role);
-
-
-
+        aPeople.validator(notification);
         return null;
     }
 }
