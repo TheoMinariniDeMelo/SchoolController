@@ -1,13 +1,17 @@
-package io.school.application.peoples.create;
+package io.school.application.employeer.create;
 
 import io.school.address.Address;
 import io.school.address.AddressGateway;
 import io.school.address.AddressID;
+import io.school.employee.Employee;
+import io.school.employee.EmployeeGateway;
 import io.school.exceptions.NotFoundException;
 import io.school.notifications.NotificationHandler;
 import io.school.peoples.People;
 import io.school.peoples.PeopleGateway;
+import io.school.school.School;
 import io.school.school.SchoolGateway;
+import io.school.school.SchoolID;
 import io.vavr.control.Either;
 
 import java.util.function.Supplier;
@@ -15,16 +19,16 @@ import java.util.function.Supplier;
 import static io.vavr.API.Try;
 
 
-public class DefaultCreatePeoples extends CreatePeoplesUseCase {
+public class DefaultCreateEmployer extends CreateEmployerUseCase {
     public SchoolGateway schoolGateway;
     public AddressGateway addressGateway;
-    public PeopleGateway peopleGateway;
+    public EmployeeGateway employeeGateway;
 
     @Override
-    public Either<NotificationHandler, CreatePeoplesOutput> execute(CreatePeoplesRole createPeoplesRole) {
+    public Either<NotificationHandler, CreateEmployerOutput> execute(CreateEmployerRole createPeoplesRole) {
         var name = createPeoplesRole.name();
         var addressID = createPeoplesRole.addressID();
-        var role = createPeoplesRole.role();
+        var roleGroup = createPeoplesRole.roleGroup();
         var numberOfCountrySerial = createPeoplesRole.numberOfCountrySerial();
         var transport = createPeoplesRole.transport();
         var schoolId = createPeoplesRole.schoolID();
@@ -32,29 +36,23 @@ public class DefaultCreatePeoples extends CreatePeoplesUseCase {
         var password = createPeoplesRole.password();
         var telephone = createPeoplesRole.telephone();
         var dateOfBirth = createPeoplesRole.dateOfBirth();
-        var createdAt = createPeoplesRole.createdAt();
-        var updateAt = createPeoplesRole.updateAt();
-        var deletedAt = createPeoplesRole.deletedAt();
-        var aPeople = People.newPeople(
+        var aEmployee = Employee.newEemployee(
                 name,
                 email,
-                password,
                 transport,
+                telephone,
+                password,
                 numberOfCountrySerial,
                 schoolId,
-                telephone,
                 dateOfBirth,
                 addressID,
-                role,
-                createdAt,
-                updateAt,
-                deletedAt
+                roleGroup
         );
         var notification = new NotificationHandler();
 
-        aPeople.validator(notification);
+        aEmployee.validator(notification);
 
-        return notification.hasNotification() ? Either.left(notification) : create(aPeople);
+        return notification.hasNotification() ? Either.left(notification) : create(aEmployee);
     }
 
     public Supplier<NotFoundException> notFoundAddress(AddressID addressID) {
@@ -66,9 +64,18 @@ public class DefaultCreatePeoples extends CreatePeoplesUseCase {
                 .orElseThrow(notFoundAddress(addressID));
     }
 
-    public Either<NotificationHandler, CreatePeoplesOutput> create(People people) {
-        return Try(() -> peopleGateway.create(people))
+    public School toSchool(SchoolID schoolID) throws NotFoundException {
+        return schoolID == null ? null : this.schoolGateway.findById(schoolID.getValue())
+                .orElseThrow(notFoundSchool(schoolID));
+    }
+
+    private Supplier<NotFoundException> notFoundSchool(SchoolID schoolID) {
+        return () -> NotFoundException.with(School.class, schoolID);
+    }
+
+    public Either<NotificationHandler, CreateEmployerOutput> create(Employee employee) {
+        return Try(() -> employeeGateway.create(employee))
                 .toEither()
-                .bimap(NotificationHandler::create, CreatePeoplesOutput::with);
+                .bimap(NotificationHandler::create, CreateEmployerOutput::with);
     }
 }

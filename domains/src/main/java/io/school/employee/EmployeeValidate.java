@@ -1,31 +1,27 @@
-package io.school.peoples;
-
+package io.school.employee;
 
 import io.school.address.AddressID;
 import io.school.notifications.Notification;
 import io.school.notifications.NotificationHandler;
-
+import io.school.peoples.People;
 import io.school.validate.NameParser;
 import io.school.validate.Validator;
 
 import java.io.IOException;
 import java.util.Objects;
-
 import java.util.UUID;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PeopleValid implements Validator<People, NotificationHandler> {
-
+public class EmployeeValidate implements Validator<Employee, NotificationHandler> {
     private Notification notification;
 
 
-    public void validate(People people, NotificationHandler notification) {
+    public void validate(Employee employee, NotificationHandler notification) {
         try {
             this.notification = notification;
-            this.addressValidator(people.getAddressID().getValue());
-            this.nameValidator(people.getName());
-            this.passwordValidator(people.getPassword());
+            this.addressValidator(employee.getAddressID().getValue());
+            this.nameValidator(employee.getName());
+            this.passwordValidator(employee.getPassword());
         } catch (Exception e) {
             notification.addNotification(new Exception("Internal error!"));
             ;

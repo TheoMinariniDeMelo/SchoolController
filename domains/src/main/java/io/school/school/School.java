@@ -1,17 +1,18 @@
 package io.school.school;
 
+import io.school.Entity;
 import io.school.address.Address;
 
 import java.util.UUID;
 
-public class School {
+public class School extends Entity<UUID> {
     protected UUID id;
     protected Address address;
     protected String cnpj;
     protected String name;
-<<<<<<< HEAD
-=======
-    public School(){}
+
+    public School() {
+    }
 
 
     public School(Address address, String cnpj, String name) {
@@ -47,5 +48,4 @@ public class School {
     public void setName(String name) {
         this.name = name;
     }
->>>>>>> c5c7136a1eee1c621aff9e1335b6983ff58f5ac8
 }

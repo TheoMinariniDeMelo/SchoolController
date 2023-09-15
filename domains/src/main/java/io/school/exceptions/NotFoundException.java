@@ -6,6 +6,7 @@ import io.school.NotNull;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class NotFoundException extends DomainException {
 
@@ -15,7 +16,7 @@ public class NotFoundException extends DomainException {
 
     public static NotFoundException with(
             final Class<? extends Entity> entity,
-            final Identify id
+            final Identify<UUID> id
     ) {
         final var anError = "%s with ID %s was not found".formatted(
                 entity.getSimpleName(),

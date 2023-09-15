@@ -1,16 +1,14 @@
-package io.school.application.peoples.create;
+package io.school.application.employeer.create;
 
-import io.school.address.Address;
 import io.school.address.AddressID;
-import io.school.role.Role;
+import io.school.role.RoleGroup;
 import io.school.school.SchoolID;
 import io.school.transport.Transport;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-public record CreatePeoplesRole(
+public record CreateEmployerRole(
 
         String name,
         String email,
@@ -20,13 +18,13 @@ public record CreatePeoplesRole(
         String telephone,
         AddressID addressID,
         String numberOfCountrySerial,
-        Role role,
+        RoleGroup roleGroup,
         LocalDate dateOfBirth,
         LocalDateTime createdAt,
         LocalDateTime updateAt,
         LocalDateTime deletedAt
 ) {
-    public static CreatePeoplesRole with(
+    public static CreateEmployerRole with(
             String name,
             Transport transport,
             String email,
@@ -35,12 +33,12 @@ public record CreatePeoplesRole(
             String telephone,
             String numberOfCountrySerial,
             AddressID addressID,
-            Role role,
+            RoleGroup roleGroup,
             LocalDate dateOfBirth,
             LocalDateTime createdAt,
             LocalDateTime updateAt,
             LocalDateTime deletedAt
     ) {
-        return new CreatePeoplesRole(name, email, password, transport, schoolID, telephone, addressID, numberOfCountrySerial, role, dateOfBirth, createdAt, updateAt, deletedAt);
+        return new CreateEmployerRole(name, email, password, transport, schoolID, telephone, addressID, numberOfCountrySerial, roleGroup, dateOfBirth, createdAt, updateAt, deletedAt);
     }
 }

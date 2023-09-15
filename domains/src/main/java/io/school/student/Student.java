@@ -1,20 +1,14 @@
-package io.school.peoples;
+package io.school.student;
 
-import io.school.Entity;
-import io.school.address.Address;
 import io.school.address.AddressID;
-import io.school.notifications.Notification;
-import io.school.notifications.NotificationHandler;
 import io.school.role.Role;
 import io.school.school.SchoolID;
 import io.school.transport.Transport;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-public class People extends Entity<UUID> {
+public class Student {
     protected String name;
     protected String email;
     protected Transport transport;
@@ -29,32 +23,8 @@ public class People extends Entity<UUID> {
     protected LocalDateTime updateAt;
     protected LocalDateTime deletedAt;
 
-    public People() {
-    }
-
-    public void validator(NotificationHandler notification) {
-        new PeopleValid().validate(this, notification);
-    }
-
-    public static People newPeople(String name, String email, String password, Transport transport, String numberOfCountrySerial, SchoolID schoolID, String telephone, LocalDate dateOfBirth, AddressID addressID, Role role, LocalDateTime createdAt, LocalDateTime updateAt, LocalDateTime deletedAt) {
-        return new People(
-                name,
-                email,
-                transport,
-                telephone,
-                password,
-                numberOfCountrySerial,
-                schoolID,
-                dateOfBirth,
-                addressID,
-                role,
-                createdAt,
-                updateAt,
-                deletedAt
-        );
-    }
-
-    public People(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, AddressID addressID, Role role, LocalDateTime createdAt, LocalDateTime updateAt, LocalDateTime deletedAt) {
+    public Student(){}
+    public Student(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, AddressID addressID, Role role, LocalDateTime createdAt, LocalDateTime updateAt, LocalDateTime deletedAt) {
         this.name = name;
         this.email = email;
         this.transport = transport;
@@ -78,6 +48,14 @@ public class People extends Entity<UUID> {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Transport getTransport() {
         return transport;
     }
@@ -92,6 +70,14 @@ public class People extends Entity<UUID> {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNumberOfCountrySerial() {
@@ -112,22 +98,6 @@ public class People extends Entity<UUID> {
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
