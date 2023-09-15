@@ -1,41 +1,73 @@
 package io.school.peoples;
 
+import io.school.Entity;
 import io.school.address.Address;
+import io.school.address.AddressID;
 import io.school.notifications.Notification;
 import io.school.notifications.NotificationHandler;
 import io.school.role.Role;
+import io.school.school.SchoolID;
 import io.school.transport.Transport;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class People extends PeopleValid{
-    protected UUID id;
+public class People extends Entity<UUID> {
     protected String name;
+    protected String email;
     protected Transport transport;
     protected String telephone;
-
-    protected Address address;
-    protected Role role ;
+    protected String password;
+    protected String numberOfCountrySerial;
+    protected SchoolID schoolID;
+    protected LocalDate dateOfBirth;
+    protected AddressID addressID;
+    protected Role role;
+    protected LocalDateTime createdAt;
+    protected LocalDateTime updateAt;
+    protected LocalDateTime deletedAt;
 
     public People() {
     }
+
     public void validator(NotificationHandler notification) {
-        this.validate(this,notification);
-    }
-    public People(String name, Transport transport, String telephone, Address address, Role role) {
-        this.name = name;
-        this.transport = transport;
-        this.telephone = telephone;
-        this.address = address;
-        this.role = role;
-    }
-    public static People newPeople(String name, Transport transport, String telephone, Address address, Role role){
-        return new People(name,transport,telephone,address,role);
+        new PeopleValid().validate(this, notification);
     }
 
-    public UUID getId() {
-        return id;
+    public static People newPeople(String name, String email, String password, Transport transport, String numberOfCountrySerial, SchoolID schoolID, String telephone, LocalDate dateOfBirth, AddressID addressID, Role role, LocalDateTime createdAt, LocalDateTime updateAt, LocalDateTime deletedAt) {
+        return new People(
+                name,
+                email,
+                transport,
+                telephone,
+                password,
+                numberOfCountrySerial,
+                schoolID,
+                dateOfBirth,
+                addressID,
+                role,
+                createdAt,
+                updateAt,
+                deletedAt
+        );
+    }
+
+    public People(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, AddressID addressID, Role role, LocalDateTime createdAt, LocalDateTime updateAt, LocalDateTime deletedAt) {
+        this.name = name;
+        this.email = email;
+        this.transport = transport;
+        this.telephone = telephone;
+        this.password = password;
+        this.numberOfCountrySerial = numberOfCountrySerial;
+        this.schoolID = schoolID;
+        this.dateOfBirth = dateOfBirth;
+        this.addressID = addressID;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updateAt = updateAt;
+        this.deletedAt = deletedAt;
     }
 
     public String getName() {
@@ -62,12 +94,52 @@ public class People extends PeopleValid{
         this.telephone = telephone;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getNumberOfCountrySerial() {
+        return numberOfCountrySerial;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setNumberOfCountrySerial(String numberOfCountrySerial) {
+        this.numberOfCountrySerial = numberOfCountrySerial;
+    }
+
+    public SchoolID getSchoolID() {
+        return schoolID;
+    }
+
+    public void setSchoolID(SchoolID schoolID) {
+        this.schoolID = schoolID;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public AddressID getAddressID() {
+        return addressID;
+    }
+
+    public void setAddressID(AddressID addressID) {
+        this.addressID = addressID;
     }
 
     public Role getRole() {
@@ -76,5 +148,29 @@ public class People extends PeopleValid{
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(LocalDateTime updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

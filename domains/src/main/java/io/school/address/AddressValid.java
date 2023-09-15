@@ -7,11 +7,8 @@ import io.school.validate.Validator;
 
 public class AddressValid implements Validator<People, NotificationHandler> {
 
-    AddressValid(People people) {
 
-    }
 
-    ;
 
     @Override
     public void validate(People people, NotificationHandler notificationHandler) {

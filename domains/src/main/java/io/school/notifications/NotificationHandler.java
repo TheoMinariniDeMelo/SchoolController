@@ -9,6 +9,14 @@ import java.util.List;
 public class NotificationHandler implements Notification {
     private final List<Exception> exceptionList = new ArrayList<>();
 
+    public static void create(Exception exception) {
+        new NotificationHandler().addNotification(new Exception(exception.getMessage()));
+    }
+
+    public static void create() {
+        new NotificationHandler();
+    }
+
     @Override
     public void addNotification(@NotNull Exception exception) {
         exceptionList.add(exception);
@@ -33,5 +41,9 @@ public class NotificationHandler implements Notification {
     @Override
     public Exception getException(@NotNull int exception) {
         return exceptionList.get(exception);
+    }
+
+    public static NotificationHandler create(Throwable throwable) {
+        return new NotificationHandler();
     }
 }
