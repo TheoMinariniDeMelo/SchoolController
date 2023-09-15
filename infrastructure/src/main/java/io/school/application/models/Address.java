@@ -1,14 +1,15 @@
-package school.io.models;
+package io.school.application.models;
 
-<<<<<<< HEAD
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.UUID;
 
+@Document(collection = "address")
 public class Address {
+    @Id
     protected UUID id;
-=======
-
-public class Address {
->>>>>>> c5c7136a1eee1c621aff9e1335b6983ff58f5ac8
     protected String road;
     protected String neighborhood;
     protected Integer number;

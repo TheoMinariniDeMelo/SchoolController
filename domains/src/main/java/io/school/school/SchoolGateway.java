@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface SchoolGateway {
     Optional<School> findById(UUID id);
 
-    School save(School school);
+    School create(School school);
 
     void deleteById(UUID id);
 

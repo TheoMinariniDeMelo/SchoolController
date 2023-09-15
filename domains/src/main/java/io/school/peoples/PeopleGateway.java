@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface PeopleGateway {
     Optional<People> findById(UUID id);
 
-    People save(People people);
+    People create(People people);
 
     void deleteById(UUID id);
 

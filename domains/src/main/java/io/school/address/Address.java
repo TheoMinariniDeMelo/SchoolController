@@ -1,8 +1,10 @@
 package io.school.address;
 
+import io.school.Entity;
+
 import java.util.UUID;
 
-public class Address {
+public class Address extends Entity<UUID> {
     protected UUID id;
     protected String road;
     protected String neighborhood;
