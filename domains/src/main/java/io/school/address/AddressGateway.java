@@ -1,7 +1,6 @@
 package io.school.address;
 
 import io.school.Pagination;
-import io.school.peoples.People;
 
 import java.util.Optional;
 import java.util.UUID;
