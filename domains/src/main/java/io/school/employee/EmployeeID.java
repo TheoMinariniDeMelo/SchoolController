@@ -13,7 +13,7 @@ public class EmployeeID implements Identify<UUID> {
         this.value = Objects.requireNonNull(id);
     }
 
-    private static EmployeeID from(final UUID value) {
+    public static EmployeeID from(final UUID value) {
         return new EmployeeID(value);
     }
 

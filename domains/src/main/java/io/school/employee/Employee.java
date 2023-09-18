@@ -1,5 +1,6 @@
 package io.school.employee;
 
+import io.school.Entity;
 import io.school.Production;
 import io.school.address.AddressID;
 import io.school.notifications.NotificationHandler;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Production(Production.Stage.IN_PRODUCTION)
-public class Employee {
+public class Employee extends Entity<UUID> {
 
     protected UUID id;
     protected String name;

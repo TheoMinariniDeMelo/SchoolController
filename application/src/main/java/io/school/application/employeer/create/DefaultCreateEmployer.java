@@ -7,8 +7,6 @@ import io.school.employee.Employee;
 import io.school.employee.EmployeeGateway;
 import io.school.exceptions.NotFoundException;
 import io.school.notifications.NotificationHandler;
-import io.school.peoples.People;
-import io.school.peoples.PeopleGateway;
 import io.school.school.School;
 import io.school.school.SchoolGateway;
 import io.school.school.SchoolID;
