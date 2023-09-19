@@ -1,4 +1,4 @@
-package io.school.application.employeer.create;
+package io.school.application.employer.create;
 
 import io.school.application.UseCase;
 import io.vavr.control.Either;

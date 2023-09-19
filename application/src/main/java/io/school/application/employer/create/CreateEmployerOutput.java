@@ -1,4 +1,4 @@
-package io.school.application.employeer.create;
+package io.school.application.employer.create;
 
 import io.school.employee.Employee;
 import io.school.peoples.People;

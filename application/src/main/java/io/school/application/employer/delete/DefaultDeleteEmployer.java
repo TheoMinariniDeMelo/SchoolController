@@ -1,4 +1,4 @@
-package io.school.application.employeer.delete;
+package io.school.application.employer.delete;
 
 import io.school.employee.Employee;
 import io.school.employee.EmployeeGateway;

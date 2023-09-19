@@ -1,7 +1,6 @@
-package io.school.application.employeer.delete;
+package io.school.application.employer.delete;
 
 import io.school.application.UnitUseCase;
-import io.school.application.UseCase;
 
 import java.util.UUID;
 
