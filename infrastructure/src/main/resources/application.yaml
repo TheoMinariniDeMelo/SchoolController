@@ -5,3 +5,5 @@ spring:
     mongodb:
       uri: mongodb://yourusername:yourpassword@localhost:27017/yourDB
 debug: true
+file:
+  upload-dir: images

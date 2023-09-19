@@ -31,8 +31,9 @@ public class SecurityManager {
     AuthenticationManager authenticationManager(AuthenticationManager authenticationManager) {
         return authenticationManager;
     }
+
     @Bean
-    protected PasswordEncoder passwordEncoder(){
+    protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
