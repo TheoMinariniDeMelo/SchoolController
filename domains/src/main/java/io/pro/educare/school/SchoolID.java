@@ -12,7 +12,7 @@ public class SchoolID implements Identify<UUID> {
         this.value = Objects.requireNonNull(id);
     }
 
-    private static SchoolID from(final UUID value) {
+    public static SchoolID from(final UUID value) {
         return new SchoolID(value);
     }
 
