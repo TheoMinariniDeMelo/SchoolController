@@ -25,7 +25,7 @@ public class DefaultCreateEmployer extends CreateEmployerUseCase {
     @Override
     public Either<NotificationHandler, CreateEmployerOutput> execute(CreateEmployerRole createPeoplesRole) {
         var name = createPeoplesRole.name();
-        var addressID = createPeoplesRole.addressID();
+        var address = createPeoplesRole.address();
         var roleGroup = createPeoplesRole.roleGroup();
         var numberOfCountrySerial = createPeoplesRole.numberOfCountrySerial();
         var transport = createPeoplesRole.transport();
@@ -43,7 +43,7 @@ public class DefaultCreateEmployer extends CreateEmployerUseCase {
                 numberOfCountrySerial,
                 schoolId,
                 dateOfBirth,
-                addressID,
+                address,
                 roleGroup
         );
         var notification = new NotificationHandler();

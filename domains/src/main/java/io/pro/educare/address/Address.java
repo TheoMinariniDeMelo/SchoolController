@@ -10,16 +10,25 @@ public class Address extends Entity<UUID> {
     protected String neighborhood;
     protected Integer number;
     protected String reference;
-
-    public Address(String road, String neighborhood, Integer number, String reference) {
+    protected Country country;
+    public Address(String road, String neighborhood, Integer number, String reference, Country country) {
         this.road = road;
         this.neighborhood = neighborhood;
         this.number = number;
         this.reference = reference;
+        this.country = country;
     }
 
     public UUID getId() {
         return id;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public String getRoad() {

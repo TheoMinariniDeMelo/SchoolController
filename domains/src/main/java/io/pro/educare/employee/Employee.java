@@ -1,6 +1,7 @@
 package io.pro.educare.employee;
 
 import io.pro.educare.Entity;
+import io.pro.educare.address.Address;
 import io.pro.educare.address.AddressID;
 import io.pro.educare.notifications.NotificationHandler;
 import io.pro.educare.role.RoleGroup;
@@ -24,7 +25,7 @@ public class Employee extends Entity<UUID> {
     protected String numberOfCountrySerial;
     protected SchoolID schoolID;
     protected LocalDate dateOfBirth;
-    protected AddressID addressID;
+    protected Address address;
     protected RoleGroup roleGroup;
     protected LocalDateTime createdAt;
     protected LocalDateTime updateAt;
@@ -34,7 +35,7 @@ public class Employee extends Entity<UUID> {
         new EmployeeValidate().validate(this, notification);
     }
 
-    public static Employee newEemployee(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, AddressID addressID, RoleGroup roleGroup) {
+    public static Employee newEemployee(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, Address address, RoleGroup roleGroup) {
         return new Employee(
                 name,
                 email,
@@ -44,13 +45,13 @@ public class Employee extends Entity<UUID> {
                 numberOfCountrySerial,
                 schoolID,
                 dateOfBirth,
-                addressID,
+                address,
                 roleGroup
         );
     }
 
 
-    public Employee(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, AddressID addressID, RoleGroup role) {
+    public Employee(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, Address address, RoleGroup role) {
         this.name = name;
         this.email = email;
         this.transport = transport;
@@ -59,11 +60,11 @@ public class Employee extends Entity<UUID> {
         this.numberOfCountrySerial = numberOfCountrySerial;
         this.schoolID = schoolID;
         this.dateOfBirth = dateOfBirth;
-        this.addressID = addressID;
+        this.address = address;
         this.roleGroup = role;
     }
 
-    public Employee update(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, AddressID addressID, RoleGroup role) {
+    public Employee update(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, Address address, RoleGroup role) {
         this.setName(name);
         this.setEmail(email);
         this.setTransport(transport);
@@ -72,7 +73,7 @@ public class Employee extends Entity<UUID> {
         this.setNumberOfCountrySerial(numberOfCountrySerial);
         this.setSchoolID(schoolID);
         this.setDateOfBirth(dateOfBirth);
-        this.setAddressID(addressID);
+        this.setAddress(address);
         this.setRoleGroup(role);
         return this;
     }
@@ -149,12 +150,12 @@ public class Employee extends Entity<UUID> {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public AddressID getAddressID() {
-        return addressID;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressID(AddressID addressID) {
-        this.addressID = addressID;
+    public void setAddress(Address addressID) {
+        this.address = addressID;
     }
 
 

@@ -7,6 +7,8 @@ import io.pro.educare.address.AddressID;
 import io.pro.educare.notifications.NotificationHandler;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.LinkedHashSet;
 import java.util.UUID;
 
@@ -19,6 +21,7 @@ public class School extends Entity<UUID> {
     protected String numberOfCountrySerial;
     protected LinkedHashSet<String> email;
     protected String name;
+    protected boolean isActivate;
     protected Instant createdAt;
     protected Instant updatedAt;
     protected Instant deletedAt;
@@ -31,20 +34,24 @@ public class School extends Entity<UUID> {
         this.setNumberOfCountrySerial(numberOfCountySerial);
         this.setName(name);
         this.setEmail(email);
+        this.updatedAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
         return this;
     }
 
-    public static School newSchool(Address address, String password, LinkedHashSet<String> telephone, String numberOfCountySerial, String name, LinkedHashSet<String> email) {
-        return new School(address, password, telephone, numberOfCountySerial, name, email);
+    public static School newSchool(Address address, String password, LinkedHashSet<String> telephone, String numberOfCountySerial, String name, LinkedHashSet<String> email, boolean isActivate) {
+        return new School(address, password, telephone, numberOfCountySerial, name, email, isActivate);
     }
 
-    public School(Address address, String password, LinkedHashSet<String> telephone, String numberOfCountySerial, String name, LinkedHashSet<String> email) {
+    public School(Address address, String password, LinkedHashSet<String> telephone, String numberOfCountySerial, String name, LinkedHashSet<String> email, boolean isActivate) {
         this.address = address;
         this.password = password;
         this.telephone = telephone;
         this.numberOfCountrySerial = numberOfCountySerial;
         this.name = name;
         this.email = email;
+        this.isActivate = isActivate;
+        this.createdAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
+        this.updatedAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
     }
 
     public void validator(NotificationHandler notificationHandler) {
@@ -53,6 +60,14 @@ public class School extends Entity<UUID> {
 
     public LinkedHashSet<String> getTelephone() {
         return telephone;
+    }
+
+    public boolean getIsActivate() {
+        return isActivate;
+    }
+
+    public void setActivate(boolean activate) {
+        isActivate = activate;
     }
 
     public Instant getCreatedAt() {

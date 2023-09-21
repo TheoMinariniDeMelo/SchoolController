@@ -1,5 +1,6 @@
 package io.pro.educare.application.employer.create;
 
+import io.pro.educare.address.Address;
 import io.pro.educare.address.AddressID;
 import io.pro.educare.role.RoleGroup;
 import io.pro.educare.school.SchoolID;
@@ -16,7 +17,7 @@ public record CreateEmployerRole(
         Transport transport,
         SchoolID schoolID,
         String telephone,
-        AddressID addressID,
+        Address address,
         String numberOfCountrySerial,
         RoleGroup roleGroup,
         LocalDate dateOfBirth,
@@ -32,13 +33,13 @@ public record CreateEmployerRole(
             SchoolID schoolID,
             String telephone,
             String numberOfCountrySerial,
-            AddressID addressID,
+            Address address,
             RoleGroup roleGroup,
             LocalDate dateOfBirth,
             LocalDateTime createdAt,
             LocalDateTime updateAt,
             LocalDateTime deletedAt
     ) {
-        return new CreateEmployerRole(name, email, password, transport, schoolID, telephone, addressID, numberOfCountrySerial, roleGroup, dateOfBirth, createdAt, updateAt, deletedAt);
+        return new CreateEmployerRole(name, email, password, transport, schoolID, telephone, address, numberOfCountrySerial, roleGroup, dateOfBirth, createdAt, updateAt, deletedAt);
     }
 }
