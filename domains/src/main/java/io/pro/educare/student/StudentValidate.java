@@ -4,7 +4,6 @@ import io.pro.educare.address.AddressID;
 import io.pro.educare.notifications.Notification;
 import io.pro.educare.notifications.NotificationHandler;
 import io.pro.educare.validate.NameParser;
-import io.school.peoples.People;
 
 import java.io.IOException;
 import java.util.Objects;

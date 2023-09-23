@@ -26,7 +26,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, AddressID addressID, Role role, LocalDateTime createdAt, LocalDateTime updateAt, LocalDateTime deletedAt) {
+    public Student(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, AddressID addressID, Role role) {
         this.name = name;
         this.email = email;
         this.transport = transport;

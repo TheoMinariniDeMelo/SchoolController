@@ -2,13 +2,12 @@ package io.pro.educare.school;
 
 import io.pro.educare.Entity;
 import io.pro.educare.Production;
+import io.pro.educare.TimeZone;
 import io.pro.educare.address.Address;
-import io.pro.educare.address.AddressID;
+import io.pro.educare.address.Address;
 import io.pro.educare.notifications.NotificationHandler;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.util.LinkedHashSet;
 import java.util.UUID;
 
@@ -21,6 +20,7 @@ public class School extends Entity<UUID> {
     protected String numberOfCountrySerial;
     protected LinkedHashSet<String> email;
     protected String name;
+    protected TimeZone timeZone;
     protected boolean isActivate;
     protected Instant createdAt;
     protected Instant updatedAt;
@@ -34,24 +34,79 @@ public class School extends Entity<UUID> {
         this.setNumberOfCountrySerial(numberOfCountySerial);
         this.setName(name);
         this.setEmail(email);
-        this.updatedAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
+        this.updatedAt = ZonedDateTime.now(ZoneId.of(timeZone.getTimezone())).toInstant();
         return this;
     }
 
-    public static School newSchool(Address address, String password, LinkedHashSet<String> telephone, String numberOfCountySerial, String name, LinkedHashSet<String> email, boolean isActivate) {
-        return new School(address, password, telephone, numberOfCountySerial, name, email, isActivate);
+    public static School newSchool(
+            final Address address,
+            final String password,
+            final LinkedHashSet<String> telephone,
+            final String numberOfCountySerial,
+            final String name,
+            final LinkedHashSet<String> email,
+            final TimeZone timeZone,
+            final boolean isActivate
+    ) {
+        final var now = ZonedDateTime.now(ZoneId.of(timeZone.getTimezone())).toInstant();
+        return new School(
+                UUID.randomUUID(),
+                address,
+                password,
+                telephone,
+                numberOfCountySerial,
+                name,
+                email,
+                timeZone,
+                isActivate,
+                now,
+                now,
+                isActivate ? null : now
+        );
     }
 
-    public School(Address address, String password, LinkedHashSet<String> telephone, String numberOfCountySerial, String name, LinkedHashSet<String> email, boolean isActivate) {
+    public static School with(
+            final UUID id,
+            final Address address,
+            final String password,
+            final LinkedHashSet<String> telephone,
+            final String numberOfCountySerial,
+            final String name,
+            final LinkedHashSet<String> email,
+            final TimeZone timeZone,
+            final boolean isActivate,
+            final Instant createdAt,
+            final Instant updatedAt,
+            final Instant deletedAt) {
+        return new School(
+                id,
+                address,
+                password,
+                telephone,
+                numberOfCountySerial,
+                name,
+                email,
+                timeZone,
+                isActivate,
+                createdAt,
+                updatedAt,
+                deletedAt
+        );
+    }
+
+    private School(UUID id, Address address, String password, LinkedHashSet<String> telephone, String numberOfCountySerial, String name, LinkedHashSet<String> email, TimeZone timeZone, boolean isActivate, Instant createdAt, Instant updatedAt, Instant deletedAt) {
+        this.id = id;
         this.address = address;
         this.password = password;
         this.telephone = telephone;
         this.numberOfCountrySerial = numberOfCountySerial;
         this.name = name;
         this.email = email;
+        this.timeZone = timeZone;
         this.isActivate = isActivate;
-        this.createdAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
-        this.updatedAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.deletedAt = deletedAt;
     }
 
     public void validator(NotificationHandler notificationHandler) {
@@ -64,6 +119,14 @@ public class School extends Entity<UUID> {
 
     public boolean getIsActivate() {
         return isActivate;
+    }
+
+    public TimeZone getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(TimeZone timeZone) {
+        this.timeZone = timeZone;
     }
 
     public void setActivate(boolean activate) {

@@ -29,9 +29,8 @@ public class DefaultCreateEmployer extends CreateEmployerUseCase {
         var roleGroup = createPeoplesRole.roleGroup();
         var numberOfCountrySerial = createPeoplesRole.numberOfCountrySerial();
         var transport = createPeoplesRole.transport();
-        var schoolId = createPeoplesRole.schoolID();
+        var schoolID = createPeoplesRole.schoolID();
         var email = createPeoplesRole.email();
-        var password = createPeoplesRole.password();
         var telephone = createPeoplesRole.telephone();
         var dateOfBirth = createPeoplesRole.dateOfBirth();
         var aEmployee = Employee.newEemployee(
@@ -39,9 +38,8 @@ public class DefaultCreateEmployer extends CreateEmployerUseCase {
                 email,
                 transport,
                 telephone,
-                password,
                 numberOfCountrySerial,
-                schoolId,
+                schoolID,
                 dateOfBirth,
                 address,
                 roleGroup

@@ -18,9 +18,8 @@ public class EmployeeValidate implements Validator<Employee, NotificationHandler
     public void validate(Employee employee, NotificationHandler notification) {
         try {
             this.notification = notification;
-            this.addressValidator(employee.getAddressID().getValue());
+            this.addressValidator(employee.getAddress().getId());
             this.nameValidator(employee.getName());
-            this.passwordValidator(employee.getPassword());
         } catch (Exception e) {
             notification.addNotification(new Exception("Internal error!"));
             ;

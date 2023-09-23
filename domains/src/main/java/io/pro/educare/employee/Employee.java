@@ -2,15 +2,16 @@ package io.pro.educare.employee;
 
 import io.pro.educare.Entity;
 import io.pro.educare.address.Address;
-import io.pro.educare.address.AddressID;
 import io.pro.educare.notifications.NotificationHandler;
 import io.pro.educare.role.RoleGroup;
 import io.pro.educare.transport.Transport;
 import io.pro.educare.Production;
 import io.pro.educare.school.SchoolID;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.UUID;
 
 @Production(Production.Stage.IN_PRODUCTION)
@@ -21,27 +22,25 @@ public class Employee extends Entity<UUID> {
     protected String email;
     protected Transport transport;
     protected String telephone;
-    protected String password;
     protected String numberOfCountrySerial;
     protected SchoolID schoolID;
     protected LocalDate dateOfBirth;
     protected Address address;
     protected RoleGroup roleGroup;
-    protected LocalDateTime createdAt;
-    protected LocalDateTime updateAt;
-    protected LocalDateTime deletedAt;
+    protected Instant createdAt;
+    protected Instant updateAt;
+    protected Instant deletedAt;
 
     public void validator(NotificationHandler notification) {
         new EmployeeValidate().validate(this, notification);
     }
 
-    public static Employee newEemployee(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, Address address, RoleGroup roleGroup) {
+    public static Employee newEemployee(String name, String email, Transport transport, String telephone, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, Address address, RoleGroup roleGroup) {
         return new Employee(
                 name,
                 email,
                 transport,
                 telephone,
-                password,
                 numberOfCountrySerial,
                 schoolID,
                 dateOfBirth,
@@ -51,17 +50,18 @@ public class Employee extends Entity<UUID> {
     }
 
 
-    public Employee(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, Address address, RoleGroup role) {
+    public Employee(String name, String email, Transport transport, String telephone, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, Address address, RoleGroup role) {
         this.name = name;
         this.email = email;
         this.transport = transport;
         this.telephone = telephone;
-        this.password = password;
         this.numberOfCountrySerial = numberOfCountrySerial;
         this.schoolID = schoolID;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.roleGroup = role;
+        this.createdAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
+        this.updateAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
     }
 
     public Employee update(String name, String email, Transport transport, String telephone, String password, String numberOfCountrySerial, SchoolID schoolID, LocalDate dateOfBirth, Address address, RoleGroup role) {
@@ -69,12 +69,12 @@ public class Employee extends Entity<UUID> {
         this.setEmail(email);
         this.setTransport(transport);
         this.setTelephone(telephone);
-        this.setPassword(password);
         this.setNumberOfCountrySerial(numberOfCountrySerial);
         this.setSchoolID(schoolID);
         this.setDateOfBirth(dateOfBirth);
         this.setAddress(address);
         this.setRoleGroup(role);
+        this.updateAt = LocalDateTime.now().atOffset(ZoneOffset.of(address.getCountry().getAlpha2Code())).toInstant();
         return this;
     }
 
@@ -118,13 +118,6 @@ public class Employee extends Entity<UUID> {
         return roleGroup;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getNumberOfCountrySerial() {
         return numberOfCountrySerial;
@@ -163,27 +156,27 @@ public class Employee extends Entity<UUID> {
         this.roleGroup = roleGroup;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdateAt() {
+    public Instant getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(LocalDateTime updateAt) {
+    public void setUpdateAt(Instant updateAt) {
         this.updateAt = updateAt;
     }
 
-    public LocalDateTime getDeletedAt() {
+    public Instant getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(LocalDateTime deletedAt) {
+    public void setDeletedAt(Instant deletedAt) {
         this.deletedAt = deletedAt;
     }
 }

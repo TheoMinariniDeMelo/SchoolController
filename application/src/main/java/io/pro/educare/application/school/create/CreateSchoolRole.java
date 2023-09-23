@@ -1,13 +1,10 @@
 package io.pro.educare.application.school.create;
 
 import io.pro.educare.address.Address;
-import io.pro.educare.address.AddressID;
-import io.pro.educare.role.RoleGroup;
-import io.pro.educare.school.SchoolID;
-import io.pro.educare.transport.Transport;
+import io.pro.educare.TimeZone;
+import io.pro.educare.address.Address;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.LinkedHashSet;
 
 public record CreateSchoolRole(
@@ -17,10 +14,12 @@ public record CreateSchoolRole(
         String password,
         LinkedHashSet<String> telephone,
         Address address,
+        TimeZone timeZone,
         String numberOfCountrySerial,
-        LocalDateTime createdAt,
-        LocalDateTime updateAt,
-        LocalDateTime deletedAt
+        Instant createdAt,
+        Instant updateAt,
+        Instant deletedAt,
+        boolean isActivate
 ) {
     public static CreateSchoolRole with(
             String name,
@@ -28,11 +27,13 @@ public record CreateSchoolRole(
             String password,
             LinkedHashSet<String> telephone,
             String numberOfCountrySerial,
-            Address address,
-            LocalDateTime createdAt,
-            LocalDateTime updateAt,
-            LocalDateTime deletedAt
+            Address Address,
+            TimeZone timeZone,
+            Instant createdAt,
+            Instant updateAt,
+            Instant deletedAt,
+            boolean isActivate
     ) {
-        return new CreateSchoolRole(name, email, password, telephone, address, numberOfCountrySerial, createdAt, updateAt, deletedAt);
+        return new CreateSchoolRole(name, email, password, telephone, Address, timeZone, numberOfCountrySerial, createdAt, updateAt, deletedAt, isActivate);
     }
 }

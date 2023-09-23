@@ -32,12 +32,12 @@ public class DefaultUpdateSchool extends UpdateSchoolUseCase {
         final var telephone = updateCommandEmployer.telephone();
         final var dateOfBirth = updateCommandEmployer.dateOfBirth();
         final var email = updateCommandEmployer.email();
-        final var addressID = updateCommandEmployer.addressID();
+        final var address = updateCommandEmployer.address();
         final var schoolID = updateCommandEmployer.schoolID();
         final var password = updateCommandEmployer.password();
         final var role = updateCommandEmployer.roleGroup();
         final var numberOfCountrySerial = updateCommandEmployer.numberOfCountrySerial();
-        Employee updatedEmployee = employee.update(name, email, transport, telephone, password, numberOfCountrySerial, schoolID, dateOfBirth, addressID, role);
+        Employee updatedEmployee = employee.update(name, email, transport, telephone, password, numberOfCountrySerial, schoolID, dateOfBirth, address, role);
 
         NotificationHandler notification = new NotificationHandler();
 

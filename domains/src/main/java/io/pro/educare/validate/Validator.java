@@ -1,6 +1,5 @@
 package io.pro.educare.validate;
 
-import io.school.peoples.People;
 
 import java.io.IOException;
 

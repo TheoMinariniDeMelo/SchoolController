@@ -1,9 +1,13 @@
 spring:
   application:
     name: SchoolController
-  data:
-    mongodb:
-      uri: mongodb://yourusername:yourpassword@localhost:27017/yourDB
+  neo4j:
+    uri: neo4j:http://localhost:7474
+    user: neo4j
+    password: bkgR4kZDaM7Uu8u
 debug: true
 file:
   upload-dir: images
+keycloak:
+  realm: ${KEYCLOAK_REALM:nuker}
+  host: ${KEYCLOAK_HOST:http://localhost:8380}

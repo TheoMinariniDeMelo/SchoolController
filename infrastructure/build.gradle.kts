@@ -22,15 +22,23 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":domains"))
+    implementation(project(":application"))
+
     implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
     implementation("org.springdoc:springdoc-openapi-webmvc-core:1.7.0")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-authorization-server")
+
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    // Spring Data Neo4j
+    implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-authorization-server")
+
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
-    compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    annotationProcessor("org.projectlombok:lombok")
+    implementation("org.keycloak:keycloak-spring-boot-starter")
+    implementation("org.keycloak:keycloak-spring-boot-starter:17.0.1")
+
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation(group = "io.vavr", name = "vavr", version = "0.10.3")
 }

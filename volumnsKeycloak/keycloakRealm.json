@@ -1,0 +1,39 @@
+{
+  "realm": "school",
+  "accessTokenLifespan": 300,
+  "accessTokenLifespanForImplicitFlow": 300,
+  "refreshTokenLifespan": 864000,
+  "roles": [
+    {
+      "name": "teacher",
+      "description": "Teacher Role"
+    },
+    {
+      "name": "student",
+      "description": "Student Role"
+    },
+    {
+      "name": "director",
+      "description": "Director Role"
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": true,
+      "firstName": "Admin",
+      "lastName": "User",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin"
+        }
+      ],
+      "attributes": {
+        "userRoles": ["teacher"]
+      }
+    }
+  ]
+}

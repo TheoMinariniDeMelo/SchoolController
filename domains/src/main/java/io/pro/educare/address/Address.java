@@ -5,12 +5,12 @@ import io.pro.educare.Entity;
 import java.util.UUID;
 
 public class Address extends Entity<UUID> {
-    protected UUID id;
     protected String road;
     protected String neighborhood;
     protected Integer number;
     protected String reference;
     protected Country country;
+
     public Address(String road, String neighborhood, Integer number, String reference, Country country) {
         this.road = road;
         this.neighborhood = neighborhood;
@@ -19,9 +19,6 @@ public class Address extends Entity<UUID> {
         this.country = country;
     }
 
-    public UUID getId() {
-        return id;
-    }
 
     public Country getCountry() {
         return country;

@@ -1,0 +1,33 @@
+{
+  "roles": [
+    {
+      "name": "admin",
+      "description": "Admin Role",
+      "composite": false,
+      "clientRole": false,
+      "containerId": "school",
+      "attributes": {
+
+      },
+      "scopeParamRequired": false
+    },
+    {
+      "name": "student",
+      "description": "Student Role",
+      "composite": false,
+      "clientRole": false,
+      "containerId": "school",
+      "attributes": {},
+      "scopeParamRequired": false
+    },
+    {
+      "name": "teacher",
+      "description": "Teacher Role",
+      "composite": false,
+      "clientRole": false,
+      "containerId": "school",
+      "attributes": {},
+      "scopeParamRequired": false
+    }
+  ]
+}

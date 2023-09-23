@@ -2,6 +2,7 @@ package io.pro.educare.school;
 
 import io.pro.educare.address.Address;
 import io.pro.educare.address.Country;
+import io.pro.educare.TimeZone;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,7 @@ public class SchoolTest {
         var email = new LinkedHashSet<>(List.of("exemple@gmail.com"));
         var password = "Example_1234567";
         var telephone = new LinkedHashSet<>(List.of("32999999999"));
+        var timeZone = TimeZone.BR;
         var isActivate = true;
         var aSchool = School.newSchool(
                 address,
@@ -34,6 +36,7 @@ public class SchoolTest {
                 numberOfCountrySerial,
                 name,
                 email,
+                timeZone,
                 isActivate
         );
         assertEquals(name, aSchool.getName());

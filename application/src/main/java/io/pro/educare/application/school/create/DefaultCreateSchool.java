@@ -3,8 +3,6 @@ package io.pro.educare.application.school.create;
 import io.pro.educare.address.Address;
 import io.pro.educare.address.AddressGateway;
 import io.pro.educare.address.AddressID;
-import io.pro.educare.employee.Employee;
-import io.pro.educare.employee.EmployeeGateway;
 import io.pro.educare.exceptions.NotFoundException;
 import io.pro.educare.notifications.NotificationHandler;
 import io.pro.educare.school.School;
@@ -18,8 +16,13 @@ import static io.vavr.API.Try;
 
 
 public class DefaultCreateSchool extends CreateEmployerUseCase {
-    public SchoolGateway schoolGateway;
-    public AddressGateway addressGateway;
+    public final SchoolGateway schoolGateway;
+
+
+    public DefaultCreateSchool(SchoolGateway schoolGateway) {
+        this.schoolGateway = schoolGateway;
+
+    }
 
     @Override
     public Either<NotificationHandler, CreateSchoolOutput> execute(CreateSchoolRole createPeoplesRole) {
@@ -29,13 +32,17 @@ public class DefaultCreateSchool extends CreateEmployerUseCase {
         var email = createPeoplesRole.email();
         var password = createPeoplesRole.password();
         var telephone = createPeoplesRole.telephone();
+        var timeZone = createPeoplesRole.timeZone();
+        var isActivate = createPeoplesRole.isActivate();
         var aSchool = School.newSchool(
                 address,
                 password,
                 telephone,
                 numberOfCountrySerial,
                 name,
-                email
+                email,
+                timeZone,
+                isActivate
         );
         var notification = new NotificationHandler();
 
@@ -44,23 +51,6 @@ public class DefaultCreateSchool extends CreateEmployerUseCase {
         return notification.hasNotification() ? Either.left(notification) : create(aSchool);
     }
 
-    public Supplier<NotFoundException> notFoundAddress(AddressID addressID) {
-        return () -> NotFoundException.with(Address.class, addressID);
-    }
-
-    public Address toAddress(AddressID addressID) throws NotFoundException {
-        return addressID == null ? null : this.addressGateway.findById(addressID.getValue())
-                .orElseThrow(notFoundAddress(addressID));
-    }
-
-    public School toSchool(SchoolID schoolID) throws NotFoundException {
-        return schoolID == null ? null : this.schoolGateway.findById(schoolID.getValue())
-                .orElseThrow(notFoundSchool(schoolID));
-    }
-
-    private Supplier<NotFoundException> notFoundSchool(SchoolID schoolID) {
-        return () -> NotFoundException.with(School.class, schoolID);
-    }
 
     public Either<NotificationHandler, CreateSchoolOutput> create(School school) {
         return Try(() -> schoolGateway.create(school))

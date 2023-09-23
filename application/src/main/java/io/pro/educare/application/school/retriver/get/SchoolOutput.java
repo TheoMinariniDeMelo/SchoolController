@@ -1,16 +1,9 @@
 package io.pro.educare.application.school.retriver.get;
 
 import io.pro.educare.address.Address;
-import io.pro.educare.address.AddressID;
-import io.pro.educare.employee.Employee;
-import io.pro.educare.role.RoleGroup;
 import io.pro.educare.school.School;
-import io.pro.educare.school.SchoolID;
-import io.pro.educare.transport.Transport;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.UUID;
 

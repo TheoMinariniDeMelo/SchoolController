@@ -1,6 +1,6 @@
 package io.pro.educare.application.school.update;
 
-import io.pro.educare.address.AddressID;
+import io.pro.educare.address.Address;
 import io.pro.educare.role.RoleGroup;
 import io.pro.educare.school.SchoolID;
 import io.pro.educare.transport.Transport;
@@ -18,7 +18,7 @@ public record UpdateCommandSchool(
         String numberOfCountrySerial,
         SchoolID schoolID,
         LocalDate dateOfBirth,
-        AddressID addressID,
+        Address address,
         RoleGroup roleGroup
 ) {
 
